@@ -21,7 +21,7 @@ intervalos_categorias = {
 }
 
 # Create flask app
-flask_app = Flask(__name__)
+app = Flask(__name__)
 
 # Cargar el modelo XGBoost
 model = joblib.load('precio_modelo.joblib')
@@ -29,14 +29,14 @@ model = joblib.load('precio_modelo.joblib')
 # Cargar el encoder de variables
 encoder = joblib.load('precio_modelo_encoding.joblib')
 
-## Cargamos y mostramos el archivo index.html como l apagina principal
-@flask_app.route("/")
+## Cargamos y mostramos el archivo index.html como la pagina principal
+@app.route("/")
 def Home():
     return render_template("index1.html")
 
 
 # Definimos la ruta llamada predict, que es la accedera el usuario para tener la prediccion
-@flask_app.route("/predict", methods = ["POST"])
+@app.route("/predict", methods = ["POST"])
 def predict():
 
     # Obtener los valores desde el formulario
@@ -83,4 +83,4 @@ def predict():
     )
 
 if __name__ == "__main__":
-    flask_app.run(host='0.0.0.0', port=port)
+    app.run(host='0.0.0.0', port=port)
