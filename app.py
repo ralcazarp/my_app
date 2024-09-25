@@ -2,6 +2,9 @@ import numpy as np
 import pandas as pd
 from flask import Flask, request, render_template, jsonify
 import joblib
+import os
+
+port = int(os.environ.get("PORT", 5000))
 
 alcaldia_coords = {
     'ALVARO OBREGON': {'centroid_lat': 19.38682526, 'centroid_long': -99.20218888},
