@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predicción</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        label {
+            font-weight: bold;
+        }
+        p {
+            color: #555;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <h1>Formulario de predicción de renta en CDMX</h1>
+
+    <!-- Formulario para enviar los datos -->
+    <form action="/predict" method="POST" {% if finished %}style="display:none;"{% endif %}>
+        <label for="Mantenimiento">Mantenimiento:</label>
+        <input type="text" id="Mantenimiento" name="Mantenimiento" required><br>
+        <p>Introduce el costo mensual de mantenimiento en pesos. Rango desde 0 hasta 10 mil. Ejemplo: 500, 1000, 2500, etc.</p><br><br>
+
+
+        <label for="Superficie_m2">Superficie m2:</label>
+        <input type="text" id="Superficie_m2" name="Superficie m2" required><br>
+        <p>Especifica la superficie total en metros cuadrados. Utiliza numeros enteros. Ejemplo: 50, 75, 152, etc.</p><br><br>
+
+        <label for="Recamaras">Recamaras:</label>
+        <input type="text" id="Recamaras" name="Recamaras" required><br>
+        <p>Indica el número de recámaras disponibles en la propiedad. Rango de números enteros de 0 a 5.</p><br><br>
+
+        <label for="Baños">Baños:</label>
+        <input type="text" id="Baños" name="Baños" required><br>
+        <p>Proporciona la cantidad de baños en la propiedad. Rango de números enteros de 0 a 5.</p><br><br>
+
+        <label for="Estacionamiento">Estacionamiento:</label>
+        <input type="text" id="Estacionamiento" name="Estacionamiento" required><br>
+        <p>Especifica el número de lugares de estacionamiento disponibles. Rango de números enteros.</p><br><br>
+
+        <label for="Alcaldia">Alcaldia:</label>
+        <input type="text" id="Alcaldia" name="Alcaldia" required><br>
+        <p>Escribe el nombre de la alcaldía donde se encuentra la propiedad en MAYUSCULAS. <br> Opciones: ALVARO OBREGON, MIGUEL HIDALGO, CUAJIMALPA DE MORELOS, BENITO JUAREZ y CUAUHTEMOC</p><br><br>
+
+        <button type="submit">Predecir</button>
+    </form>
+
+    {% if prediction_texto %}
+        <h2>{{ prediction_texto }}</h2>
+        <h3>{{ rango_precios_texto }}</h3>
+        <button onclick="location.href='/'">Hacer otra predicción</button>
+    {% endif %}
+
+
+</body>
+</html>
